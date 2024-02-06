@@ -1,17 +1,15 @@
-n, m = map(int, input().split())
-a = list(map(int, input().split()))
+N, M = map(int, input().split())
+numlist = list(map(int, input().split()))
 
-left, right = 0, 1
-cnt = 0
-while right <= n and left <= right:
-  sum_value = a[left:right]
-  total_value = sum(sum_value)
+sumlist = [0]
+sub_sum = 0
+for i in numlist:
+    sub_sum += i
+    sumlist.append(sub_sum)
 
-  if total_value == m:
-    cnt += 1
-    right += 1
-  elif total_value > m:
-    left += 1
-  else:
-    right += 1
-print(cnt)
+res = 0 
+for i in range(N+1):
+    for j in range(i):
+        if sumlist[i] - sumlist[j] == M:
+            res += 1
+print(res)
